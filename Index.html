@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For my Ammu 💗</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  @keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  @keyframes fadeSlideIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes popIn{0%{transform:scale(0) rotate(-10deg)}60%{transform:scale(1.18) rotate(3deg)}100%{transform:scale(1) rotate(0deg)}}
+  @keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+  @keyframes sparkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.2;transform:scale(0.4)}}
+  @keyframes confettiFall{0%{transform:translateY(-80px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(900deg);opacity:0}}
+  @keyframes bounceBtn{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  @keyframes pageNum{from{transform:scale(0.5);opacity:0}to{transform:scale(1);opacity:1}}
+
+  html,body{
+    min-height:100vh;
+    font-family:'Nunito',sans-serif;
+  }
+
+  body{
+    background:linear-gradient(-45deg,#fce4ec,#f3e5f5,#e8eaf6,#e0f7fa,#fff9c4,#fce4ec);
+    background-size:400% 400%;
+    animation:bgShift 12s ease infinite;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    min-height:100vh;
+    padding:20px 16px 40px;
+    position:relative;overflow:hidden;
+  }
+
+  .confetti-wrap{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .cp{position:absolute;top:0;border-radius:2px;animation:confettiFall linear infinite}
+
+  .card{
+    background:rgba(255,255,255,0.72);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-radius:32px;
+    width:100%;max-width:520px;
+    padding:36px 32px 28px;
+    position:relative;z-index:2;
+    border:1.5px solid rgba(255,255,255,0.9);
+    min-height:480px;
+    display:flex;flex-direction:column;align-items:center;
+  }
+
+  .dots{display:flex;gap:9px;justify-content:center;margin-bottom:22px}
+  .dot{width:11px;height:11px;border-radius:50%;background:#f8bbd0;cursor:pointer;transition:all 0.3s;border:2px solid #f06292}
+  .dot.active{background:#e91e63;transform:scale(1.35);border-color:#c2185b}
+
+  .page{display:none;flex-direction:column;align-items:center;width:100%;animation:fadeSlideIn 0.45s ease both;flex:1}
+  .page.active{display:flex}
+
+  .big-emoji{font-size:70px;line-height:1;margin-bottom:14px;display:block}
+
+  .page-num{
+    font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+    color:#f06292;margin-bottom:8px;opacity:0.8;
+    animation:pageNum 0.4s ease both;
+  }
+
+  .page-title{
+    font-size:27px;font-weight:900;color:#c2185b;
+    text-align:center;margin-bottom:16px;line-height:1.25;
+  }
+
+  .page-body{
+    font-size:16px;line-height:1.85;color:#6a1b9a;
+    text-align:center;max-width:420px;font-weight:600;
+  }
+
+  .pill-row{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:18px}
+  .pill{
+    padding:7px 18px;border-radius:999px;font-size:13px;font-weight:800;
+    animation:popIn 0.5s ease both;cursor:default;
+    transition:transform 0.2s;
+  }
+  .pill:hover{transform:scale(1.1) rotate(-2deg)}
+  .pp{background:#f8bbd0;color:#880e4f}
+  .pu{background:#e1bee7;color:#4a148c}
+  .pb{background:#bbdefb;color:#0d47a1}
+  .pg{background:#c8e6c9;color:#1b5e20}
+  .py{background:#fff9c4;color:#e65100}
+
+  .names-strip{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin:12px 0 20px}
+  .nb{
+    padding:8px 20px;border-radius:999px;font-size:14px;font-weight:800;
+    cursor:default;transition:transform 0.2s;animation:popIn 0.5s ease both;
+  }
+  .nb:hover{transform:scale(1.12) rotate(-4deg)}
+
+  .nav-row{display:flex;gap:14px;justify-content:center;margin-top:24px;width:100%}
+  .nav-btn{
+    padding:12px 30px;border-radius:999px;font-size:15px;font-weight:800;
+    cursor:pointer;border:none;transition:transform 0.18s,opacity 0.2s;
+    animation:bounceBtn 2s ease-in-out infinite;
+    font-family:'Nunito',sans-serif;
+  }
+  .nav-btn:hover{transform:scale(1.08)}
+  .nav-btn:active{transform:scale(0.95)}
+  .btn-prev{background:#f8bbd0;color:#880e4f}
+  .btn-next{background:linear-gradient(135deg,#e91e63,#c2185b);color:#fff}
+  .nav-btn:disabled{opacity:0.28;animation:none;cursor:default;pointer-events:none}
+
+  .sparkle-row{display:flex;gap:14px;justify-content:center;margin-top:14px;z-index:2}
+  .sp{font-size:20px;animation:sparkle ease-in-out infinite}
+
+  .hearts-final{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+  .hf{font-size:26px;animation:heartbeat 1.5s ease-in-out infinite}
+
+  .final-sign{font-size:15px;color:#ad1457;margin-top:18px;font-style:italic;text-align:center;font-weight:700}
+  .tap-hint{font-size:12px;color:#f06292;opacity:0.7;margin-top:10px;letter-spacing:1.5px;font-weight:700}
+
+  .p0-sub{font-size:16px;color:#ad1457;margin-bottom:16px;font-weight:700;opacity:0.85}
+
+  @media(max-width:480px){
+    .card{padding:28px 20px 22px;border-radius:24px}
+    .page-title{font-size:22px}
+    .big-emoji{font-size:58px}
+    .page-body{font-size:15px}
+  }
+</style>
+</head>
+<body>
+
+<div class="confetti-wrap" id="cw"></div>
+
+<div class="card">
+  <div class="dots" id="dots">
+    <div class="dot active" onclick="goTo(0)"></div>
+    <div class="dot" onclick="goTo(1)"></div>
+    <div class="dot" onclick="goTo(2)"></div>
+    <div class="dot" onclick="goTo(3)"></div>
+    <div class="dot" onclick="goTo(4)"></div>
+    <div class="dot" onclick="goTo(5)"></div>
+  </div>
+
+  <div class="page active" id="page0">
+    <span class="big-emoji" style="animation:heartbeat 1.5s ease-in-out infinite">💗</span>
+    <div class="p0-sub">for my most special person</div>
+    <div class="page-title">Hey Ammu...</div>
+    <div class="names-strip">
+      <span class="nb" style="background:#f8bbd0;color:#880e4f;animation-delay:0.1s">✨ Cutie Pie</span>
+      <span class="nb" style="background:#e1bee7;color:#4a148c;animation-delay:0.2s">🍇 Kannammalu</span>
+      <span class="nb" style="background:#bbdefb;color:#0d47a1;animation-delay:0.3s">🍑 Bujjipandu</span>
+    </div>
+    <div class="page-body">I made this little page just for you. Each page has something I really need you to know. Read every word, okay? 🥺</div>
+    <div class="tap-hint">TAP NEXT TO START ➜</div>
+  </div>
+
+  <div class="page" id="page1">
+    <span class="big-emoji" style="animation:wiggle 2s ease-in-out infinite">🙏</span>
+    <div class="page-num">page 1 of 5</div>
+    <div class="page-title">I'm so so so extremely sorry</div>
+    <div class="page-body">I hate that I made you feel bad even for a second. You are so so so extremely loved, Ammu. I messed up and I own it completely. You deserved better and I know that. I'm sorry from the very bottom of my heart 💔</div>
+    <div class="pill-row">
+      <span class="pill pp" style="animation-delay:0.1s">I mean every word 💯</span>
+      <span class="pill pu" style="animation-delay:0.2s">Won't happen again</span>
+    </div>
+  </div>
+
+  <div class="page" id="page2">
+    <span class="big-emoji" style="animation:heartbeat 1.4s ease-in-out infinite">💜</span>
+    <div class="page-num">page 2 of 5</div>
+    <div class="page-title">I love you so so so much</div>
+    <div class="page-body">More than all the stars put together. More than all the mangoes and bujjis in the world 🥭 You are the most precious, most beautiful, most wonderful person I've ever known. Every single day I feel so lucky that you're mine, Kannammalu 🥺</div>
+    <div class="pill-row">
+      <span class="pill pp" style="animation-delay:0.1s">Always & forever 🤞</span>
+      <span class="pill pu" style="animation-delay:0.2s">No cap at all</span>
+      <span class="pill pb" style="animation-delay:0.3s">Like really really 💜</span>
+    </div>
+  </div>
+
+  <div class="page" id="page3">
+    <span class="big-emoji" style="animation:float 3s ease-in-out infinite">🧠</span>
+    <div class="page-num">page 3 of 5</div>
+    <div class="page-title">Stop overthinking, cutie!</div>
+    <div class="page-body">I know your brain is running 1000 tabs right now so just close them all and breathe. You are loved. You are safe. Everything is okay. Whatever you're worried about, I'm here. We can face anything together 🫶</div>
+    <div class="pill-row">
+      <span class="pill pb" style="animation-delay:0.1s">Close those tabs 😄</span>
+      <span class="pill pg" style="animation-delay:0.2s">You're okay 💙</span>
+      <span class="pill pu" style="animation-delay:0.3s">I've got you always</span>
+    </div>
+  </div>
+
+  <div class="page" id="page4">
+    <span class="big-emoji" style="animation:wiggle 2.5s ease-in-out infinite">🌺</span>
+    <div class="page-num">page 4 of 5</div>
+    <div class="page-title">Just so you know...</div>
+    <div class="page-body">You're cute when you're angry. You're adorable when you laugh. You're my favourite human in the entire universe. My Bujjipandu, my Kannammalu, my Cutie Pie and I will always always choose you, every single time 💛</div>
+    <div class="pill-row">
+      <span class="pill py" style="animation-delay:0.1s">Cutest person ever 🏆</span>
+      <span class="pill pp" style="animation-delay:0.2s">My whole world 🌍</span>
+    </div>
+  </div>
+
+  <div class="page" id="page5">
+    <span class="big-emoji" style="animation:heartbeat 1.2s ease-in-out infinite">💗</span>
+    <div class="page-num">page 5 of 5</div>
+    <div class="page-title">My little promise 🤍</div>
+    <div class="page-body">I promise to make you smile more than I make you worry. I promise to be your safe place, your biggest fan and your silliest companion. You are so so so extremely loved, Ammu. Never ever forget that 🥰</div>
+    <div class="hearts-final">
+      <span class="hf" style="animation-delay:0s">💗</span>
+      <span class="hf" style="animation-delay:0.2s">💜</span>
+      <span class="hf" style="animation-delay:0.4s">💛</span>
+      <span class="hf" style="animation-delay:0.6s">💙</span>
+      <span class="hf" style="animation-delay:0.8s">🩷</span>
+    </div>
+    <div class="final-sign">Lots of love & the tightest hugs,<br>Always yours, Kannayyalu 💗</div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn btn-prev" id="prevBtn" onclick="changePage(-1)" disabled>← Back</button>
+    <button class="nav-btn btn-next" id="nextBtn" onclick="changePage(1)">Next →</button>
+  </div>
+
+  <div class="sparkle-row">
+    <span class="sp" style="animation-duration:1.1s;animation-delay:0s">💖</span>
+    <span class="sp" style="animation-duration:1.5s;animation-delay:0.2s">🌸</span>
+    <span class="sp" style="animation-duration:1.3s;animation-delay:0.4s">✨</span>
+    <span class="sp" style="animation-duration:1.7s;animation-delay:0.1s">🍑</span>
+    <span class="sp" style="animation-duration:1.2s;animation-delay:0.5s">💕</span>
+    <span class="sp" style="animation-duration:1.6s;animation-delay:0.3s">🌼</span>
+  </div>
+</div>
+
+<script>
+let cur=0;
+const total=6;
+const colors=['#f48fb1','#ce93d8','#90caf9','#a5d6a7','#fff176','#ffcc80','#ef9a9a','#80deea'];
+const cw=document.getElementById('cw');
+for(let i=0;i<28;i++){
+  const d=document.createElement('div');
+  d.className='cp';
+  d.style.cssText='left:'+Math.random()*100+'%;width:'+(7+Math.random()*10)+'px;height:'+(7+Math.random()*10)+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';animation-duration:'+(3+Math.random()*6)+'s;animation-delay:'+Math.random()*8+'s;border-radius:'+(Math.random()>0.5?'50%':'3px');
+  cw.appendChild(d);
+}
+function goTo(n){
+  const prev=document.getElementById('page'+cur);
+  prev.classList.remove('active');
+  prev.style.display='none';
+  cur=n;
+  const p=document.getElementById('page'+cur);
+  p.style.display='flex';
+  requestAnimationFrame(()=>p.classList.add('active'));
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+  document.getElementById('prevBtn').disabled=cur===0;
+  document.getElementById('nextBtn').disabled=cur===total-1;
+  if(cur===total-2) document.getElementById('nextBtn').textContent='Last page 💗 →';
+  else if(cur===total-1) document.getElementById('nextBtn').textContent='The end 🥰';
+  else document.getElementById('nextBtn').textContent='Next →';
+}
+function changePage(dir){
+  const n=cur+dir;
+  if(n>=0&&n<total)goTo(n);
+}
+</script>
+</body>
+</html>
